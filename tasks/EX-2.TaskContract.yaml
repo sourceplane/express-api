@@ -1,0 +1,17 @@
+apiVersion: orun.io/v1
+kind: TaskContract
+metadata:
+  name: EX-2
+  title: "Express on Workers"
+spec:
+  goal: Vercel's Express.js template runs as one Cloudflare Worker — the example's Express app served through the runtime's Node.js HTTP server support, its static files from Static Assets — with its tests, and its README saying how it maps to Vercel
+  affects:
+    - apps/api
+    - tests/api
+    - pnpm-lock.yaml
+    - pnpm-workspace.yaml
+    - README.md
+  doneWhen:
+    - pnpm typecheck, lint, test and build are green
+    - wrangler dev answers every route as Node does, and serves public/ from Static Assets
+  gates: []
