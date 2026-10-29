@@ -7,6 +7,6 @@ folder is the adoption; the merge creates the epic in the workspace.
 
 | Epic | Cluster | Status | What it is |
 |------|---------|--------|------------|
-| [`express-api/`](./express-api/) | **EX** | In progress (EX1: the site on Workers) | Vercel's Express.js template, its code unchanged, as one Cloudflare Worker through the runtime's Node.js HTTP server support — and an Orun baseline that instantiates it in one landing (EX2) |
+| [`express-api/`](./express-api/) | **EX** | ✅ Shipped (`baseline-v1`); live bootstrap pending | Vercel's Express.js template, its code unchanged, as one Cloudflare Worker through the runtime's Node.js HTTP server support — and an Orun baseline that instantiates it in one landing (EX2) |
 
 As-built ≠ intent: what shipped lives in each epic's `IMPLEMENTATION-STATUS.md`.
