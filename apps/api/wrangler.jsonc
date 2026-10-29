@@ -1,0 +1,71 @@
+// The Worker binds nothing, so this file is committed as-is (no wiring
+// template). Orun deploys with `--env stage` / `--env prod`; wrangler names
+// the Worker express-api-api-<env> from the top-level name. Each environment's
+// ENVIRONMENT var is what GET /health reports.
+//
+// How the Express app runs here:
+// - nodejs_compat with a compatibility date after 2025-09-01 gives the Worker
+//   node:http's server half (src/worker.ts hands requests to app.listen's
+//   server), node:fs over the uploaded modules, and the vars in process.env.
+// - `public/` is Workers Static Assets: /style.css and /logo.png are served
+//   before the Worker runs; every other path reaches Express.
+// - `components/about.htm` is uploaded beside the bundle as a text module, so
+//   node:fs finds it at /bundle/components/about.htm for res.sendFile. The
+//   other default module rules are switched off, or wrangler would upload
+//   node_modules' .wasm, .txt and .bin files with it.
+// - `define` gives import.meta.url, which workerd leaves undefined, the path
+//   the app's source has in that module tree, so the example's
+//   `__dirname` + `../components/about.htm` resolves as it does on Node.
+//   wrangler does not inherit `define` into environments: each one repeats it.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "express-api-api",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "find_additional_modules": true,
+  "base_dir": ".",
+  "rules": [
+    { "type": "Text", "globs": ["components/**/*.htm"], "fallthrough": false },
+    { "type": "CompiledWasm", "globs": [], "fallthrough": false },
+    { "type": "Data", "globs": [], "fallthrough": false }
+  ],
+  "assets": {
+    "directory": "public"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "define": {
+    "import.meta.url": "\"file:///bundle/src/index.js\""
+  },
+  "vars": {
+    "ENVIRONMENT": "local"
+  },
+  "env": {
+    "dev": {
+      "define": {
+        "import.meta.url": "\"file:///bundle/src/index.js\""
+      },
+      "vars": {
+        "ENVIRONMENT": "dev"
+      }
+    },
+    "stage": {
+      "define": {
+        "import.meta.url": "\"file:///bundle/src/index.js\""
+      },
+      "vars": {
+        "ENVIRONMENT": "stage"
+      }
+    },
+    "prod": {
+      "define": {
+        "import.meta.url": "\"file:///bundle/src/index.js\""
+      },
+      "vars": {
+        "ENVIRONMENT": "prod"
+      }
+    }
+  }
+}
