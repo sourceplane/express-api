@@ -10,7 +10,7 @@ somebody else's app in one landing.**
 
 | | |
 |---|---|
-| Status | In progress — EX1 on main: the site runs on Workers |
+| Status | ✅ Shipped (`baseline-v1`) — proven offline in Baseline CI; not yet live (risk EX-A) |
 | Upstream | [vercel/examples `solutions/express`](https://github.com/vercel/examples/tree/main/solutions/express) (MIT), at `de86723` (2026-10-16) |
 | Reference | [hono-api](https://github.com/sourceplane/hono-api) — the same plain Worker, scaffolding, tests and bootstrap |
 | Key | `EX` |

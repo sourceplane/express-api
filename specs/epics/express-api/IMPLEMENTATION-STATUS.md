@@ -4,7 +4,7 @@
 |---|---|---|
 | EX0 — the spec | ✅ | EX-1 |
 | EX1 — Express on Workers | ✅ | EX-2 |
-| EX2 — a baseline | planned | EX-3 |
+| EX2 — a baseline | ✅ | EX-3, tagged `baseline-v1` |
 
 ## Departures from the upstream example
 

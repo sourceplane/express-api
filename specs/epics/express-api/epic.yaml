@@ -9,7 +9,7 @@ metadata:
 spec:
   title: "Vercel's Express.js template on Cloudflare Workers"
   summary: "Vercel's Express.js template — one Express app with an HTML home page, an about page sent from a file, a JSON API route and a health check, beside a stylesheet and a logo — runs as one Cloudflare Worker through the Workers runtime's Node.js HTTP server support, its static files from Workers Static Assets, inside the Cirrus baseline's repository conventions, and becomes an Orun baseline that takes a new Express app from nothing to live on stage and prod in one landing."
-  state: started
+  state: completed
   milestones:
     - name: "EX0 — the spec"
       exitCriteria:
