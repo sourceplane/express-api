@@ -1,0 +1,30 @@
+# The epic's declaration. metadata.name equals the directory name; metadata.key
+# is the task-key prefix this epic reserves (EX → EX-1, EX-2, …). Owner, target
+# date and health are the platform's — never written here.
+apiVersion: orun.io/v1
+kind: Epic
+metadata:
+  name: express-api
+  key: EX
+spec:
+  title: "Vercel's Express.js template on Cloudflare Workers"
+  summary: "Vercel's Express.js template — one Express app with an HTML home page, an about page sent from a file, a JSON API route and a health check, beside a stylesheet and a logo — runs as one Cloudflare Worker through the Workers runtime's Node.js HTTP server support, its static files from Workers Static Assets, inside the Cirrus baseline's repository conventions, and becomes an Orun baseline that takes a new Express app from nothing to live on stage and prod in one landing."
+  state: started
+  milestones:
+    - name: "EX0 — the spec"
+      exitCriteria:
+        - "the repository is born with its intent, CI, tooling and spec index, and this doc set and the task contracts are on main"
+      tasks: [EX-1]
+    - name: "EX1 — Express on Workers"
+      exitCriteria:
+        - "apps/api is the upstream src/index.ts, listening as on Node, handed to the Worker by httpServerHandler from cloudflare:node; public/ is Static Assets; components/about.htm is uploaded for node:fs"
+        - "`pnpm typecheck`, `pnpm lint`, `pnpm test` and `pnpm build` are green, the tests serving the app on Node and calling every route over HTTP"
+        - "`wrangler dev` answers every route as Node does — the home page, the about page from disk, the JSON routes, Express's 404 — and serves the stylesheet and the logo from Static Assets"
+        - "the README says how to run, test and deploy it, and how every Vercel piece maps to Cloudflare"
+      tasks: [EX-2]
+    - name: "EX2 — a baseline"
+      exitCriteria:
+        - "blueprint.yaml (the console card) and repo-blueprint.yaml (the build) take a new Express app from nothing to live on stage and prod in one landing, then record it"
+        - "an app built from it carries the app only, renamed throughout to its own name, repository and Worker, with the example's licence intact"
+        - "Baseline CI is green: contract tests, generated component docs, the blueprint read by the pinned orun, the leak gate, the offline bootstrap and the end-to-end tier — the stage lane's steps in a staged job tree, the Worker smoke-tested and every route read"
+      tasks: [EX-3]
